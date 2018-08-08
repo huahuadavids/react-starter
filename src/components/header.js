@@ -9,7 +9,7 @@ class Header extends  React.Component {
   }
   render(){
     const lists = [ "home", "intro", "login" ];
-    const headers = lists.map( (value,index,array)=> {
+    const headers = lists.map( (value,index,array) => {
       return <li key={value+Math.random()}>{value}</li>
     });
 
