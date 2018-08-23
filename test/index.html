@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+  if (typeof Array.prototype.map != "function") {
+    Array.prototype.map = function (fn, context) {
+      var arr = [];
+      if (typeof fn === "function") {
+        var len = this.length
+        for (var k = 0; k < len; k++) {
+          arr.push(fn.call(context, this[k], k, this));
+        }
+      }
+      return arr;
+    };
+  }
+
+
+</script>
+
+</body>
+</html>

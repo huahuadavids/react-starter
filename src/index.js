@@ -23,7 +23,6 @@ import './styles/index.css';
 
 import Loading from './components/loading';
 
-
 /*
  * @description  dynamic import the achieve the code splitting
  * @create-react-app support this
@@ -41,6 +40,11 @@ const About = Loadable({
   loading: Loading,
 });
 
+const Test = Loadable({
+  loader: () =>  import('./pages/Test'),
+  loading: Loading,
+});
+
 
 const MOUNT_NODE = document.getElementById('root');
 
@@ -51,6 +55,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/" exact component={App}/>
           <Route path="/about" component={About}/>
+          <Route path="/test" component={Test}/>
         </Switch>
       </div>
     </HashRouter>
