@@ -1,12 +1,36 @@
 import React                  from "react"
 import {connect}              from "react-redux"
-
+/**
+ * @title decorator
+ *
+ * npm i babel-plugin-transform-decorators-legacy
+ * write in the package.json file
+ * {
+ *   "plugins":[
+ *     "transform-decorators-legacy"
+ *   ]
+ * }
+ *
+ */
+export default @connect(
+  state => state , // you also can write like this : state = > ( { value: state } )
+  (dispatch) => {
+    return {
+      reduceHandler: () => {
+        dispatch({type: 'DECREMENT'});
+      },
+      addHandler: () => {
+        dispatch({type: 'INCREMENT'});
+      }
+    }
+  }
+)
 class Redux extends React.Component {
   render(){
-    const {value, reduceHandler, addHandler} = this.props;
+    const { counter, reduceHandler, addHandler} = this.props;
     return (
       <div>
-        <p>{value}</p>
+        <p>{counter}</p>
         <button onClick={reduceHandler}>-</button>
         <button onClick={addHandler}>+</button>
       </div>
@@ -14,21 +38,4 @@ class Redux extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    value: state.counter
-  }
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    reduceHandler: () => {
-      dispatch({type: 'DECREMENT'});
-    },
-    addHandler: () => {
-      dispatch({type: 'INCREMENT'});
-    }
-  }
-};
-
-export default  connect(mapStateToProps, mapDispatchToProps)(Redux);
