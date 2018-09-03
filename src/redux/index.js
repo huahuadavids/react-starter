@@ -1,16 +1,9 @@
+/**
+ * @url https://segmentfault.com/a/1190000012976767
+ */
+
 import { createStore } from 'redux';
+import reducers from "./reducers"
 
-function counter(state = 0, action) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-    default:
-      return state;
-  }
-}
-
-let store = createStore(counter);
-
+let store = createStore(reducers);
 export default store;

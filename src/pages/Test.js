@@ -1,4 +1,5 @@
 import React from "react"
+import Detail from "../components/Detail"
 
 class Test extends React.Component {
   constructor(){
@@ -37,6 +38,7 @@ class Test extends React.Component {
         <ul>
           {list}
         </ul>
+        <Detail text="haha"/>
       </div>
     )
   }

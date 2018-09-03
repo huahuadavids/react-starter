@@ -45,6 +45,11 @@ const Test = Loadable({
   loading: Loading,
 });
 
+const Redux = Loadable({
+  loader: () =>  import('./pages/Redux'),
+  loading: Loading,
+});
+
 
 const MOUNT_NODE = document.getElementById('root');
 
@@ -56,6 +61,8 @@ ReactDOM.render(
           <Route path="/" exact component={App}/>
           <Route path="/about" component={About}/>
           <Route path="/test" component={Test}/>
+          <Route path="/redux" component={Redux}/>
+          <Redirect path="*" to="/"/>
         </Switch>
       </div>
     </HashRouter>

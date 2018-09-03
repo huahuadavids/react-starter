@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
+import counter from "./counter"
 
-const reducers = combineReducers({
-  visibilityFilter,
-  todos
+
+export default  combineReducers({
+  counter
 })
 
-export default reducers
