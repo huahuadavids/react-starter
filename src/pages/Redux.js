@@ -1,5 +1,6 @@
 import React                  from "react"
 import {connect}              from "react-redux"
+import {add, minus }          from "../redux/action/counter"
 /**
  * @title decorator
  *
@@ -14,25 +15,16 @@ import {connect}              from "react-redux"
  */
 export default @connect(
   state => state , // you also can write like this : state = > ( { value: state } )
-  (dispatch) => {
-    return {
-      reduceHandler: () => {
-        dispatch({type: 'DECREMENT'});
-      },
-      addHandler: () => {
-        dispatch({type: 'INCREMENT'});
-      }
-    }
-  }
+  {add, minus}
 )
 class Redux extends React.Component {
   render(){
-    const { counter, reduceHandler, addHandler} = this.props;
+    const { counter, add, minus} = this.props;
     return (
       <div>
         <p>{counter}</p>
-        <button onClick={reduceHandler}>-</button>
-        <button onClick={addHandler}>+</button>
+        <button onClick={minus}>-</button>
+        <button onClick={add}>+</button>
       </div>
     )
   }
