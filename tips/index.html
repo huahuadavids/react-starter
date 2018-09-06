@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<h3>
+  from a book called Learning React
+</h3>
+
+
+<script id="functional-programming">
+// type 1 functions in Object
+const obj = {
+  name: "huaua",
+  say(){
+    console.log(this.name)
+  }
+}
+obj.say()
+
+// type 2  functions in Array
+const libs = [1, mes => console.log(mes),
+  {
+  name: "huahua"
+}]
+
+libs[1](libs[2])
+
+/**
+ * higher-order functions
+ */
+ // type 3 functions require functions
+const fn = logger => logger("wahaha")
+fn(message => console.log(message))
+
+var createScream = function(logger) {
+  return function(message) {
+    logger(message.toUpperCase() + "!!!")
+  }
+}
+const scream = createScream(message => console.log(message))
+scream('functions can be returned from other functions')
+
+// the es6 syntax for the above codes
+let  createScream  = logger => message => logger(message.toUpperCase() + "!!!")
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
