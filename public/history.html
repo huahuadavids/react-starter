@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  #app {
+    width: 400px;
+    height: 400px;
+  }
+
+</style>
+
+
+<div id="app">
+
+  <a onclick="go('/a')">go a</a>
+  <a onclick="go('/b')">go b</a>
+
+
+</div>
+<script>
+  function go(path){
+    console.log(path
+    window.history.pushState({
+      path,
+      name: 'link ' + path
+    },
+    'a链接', path)
+    console.log(history)
+  }
+
+
+  window.addEventListener("popState", function(e){
+    console.log(e)
+  })
+
+
+</script>
+
+</body>
+</html>

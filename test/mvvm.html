@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>demo</title>
+</head>
+
+<body>
+
+  <div id="app"><input type="text" v-model="text" placeholder=""><div>{{text}}</div></div>
+
+  
+  <script>
+
+    class Compile {
+      constructor(el,vm){
+        this.el = this.isDomNode(el) ? el : document.querySelector(el);
+        this.vm = vm;
+        if(this.el){
+          let fragment = this.node2fragment(this.el)
+          // 2 compile v-model {{ }}
+          this.compile(fragment)
+          // 2 编译好的frag放回去
+        }
+      }
+      /**
+       * @name  判断是不是元素节点
+       * @param node
+       * @returns {boolean}
+       */
+      isDomNode(node){
+        return node.nodeType === 1;
+      }
+
+      /**
+       * @name 把真实dom移入内存 fragment
+       * @param el
+       */
+      node2fragment(el){
+        let fragment = document.createDocumentFragment();
+
+        let firstChild;
+        while(firstChild = el.firstChild){
+          fragment.appendChild(firstChild)
+        }
+        return fragment;
+      }
+
+      /**
+       *
+       * @param fragment
+       * @description
+       * 区分是元素(继续递归   且判断是否存在v-model)
+       * 还是文本(是否有{{}})
+       */
+      compile(fragment){
+        const childNodes = fragment.childNodes
+        Array.from(childNodes).forEach((node) => {
+          if(this.isDomNode(node)){
+            this.compile(node)
+            this.compileNode(node)
+          }else {
+            // console.log("是文本")
+            this.compileText(node)
+          }
+        })
+      }
+
+      compileNode(node){
+        const attrs = node.attributes;
+        Array.from(attrs).forEach( attr => {
+          // 判断是不是指令
+          if(attr.name.startsWith("v-")){
+            // 如果是 取得值 赋值给输入框
+            let prop = name.value;
+
+          }
+        })
+      }
+
+      compileText(node){
+        // 文本内容
+        const text = node.textContent;
+        // 正则
+        const reg = /\{\{([^}]+)\}\}/g;
+        if(reg.test(text)){
+
+        }
+      }
+
+    }
+
+    compileUtils = {
+      text(){
+
+      },
+      model(){
+
+      }
+    }
+
+    class VM {
+      constructor(option){
+        Object.assign(this, option)
+        if(this.el){
+          new Compile(this.el, this)
+        }
+      }
+    }
+
+
+    const vm = new VM({
+      el : "#app",
+      data: {
+
+      }
+    })
+    
+
+  </script>
+
+
+
+
+</body>
+
+</html>

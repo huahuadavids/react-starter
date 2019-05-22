@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h3>高阶组件 </h3>
+<ul>
+    <li>1 先写一个普通组件</li>
+    <li>2 函数返回这个普通组件，使用组件作为参数</li>
+</ul>
+<script>
+    /**
+     * @step1
+     */
+
+    class List extends  React.Component {
+        render(){
+            return (
+                <div>
+
+                </div>
+            )
+        }
+
+    }
+</script>
+
+<script>
+    /**
+     * @step2
+     */
+    function List (Component){
+        return class List extends  React.Component {
+            render(){
+                return (
+                    <div>
+                        <Component />
+                    </div>
+                )
+            }
+
+        }
+    }
+</script>
+
+<script>
+    /**
+     * @step3
+     * 传参问题
+     */
+
+
+
+</script>
+
+<script>
+    /**
+     * @step4 装饰器模式（babel配置)
+     */
+    @List
+    export default class FooA extends React.Component {
+        render(){
+            return (
+                <div>
+                    this is list
+                </div>
+            )
+        }
+    }
+
+    //装饰器传值
+    @List("about")
+
+    const FooB = title => Component => {
+
+    }
+
+</script>
+<h3>proxy高阶组件 使用</h3>
+<ul>
+    <li>1 操作props</li>
+    <li>2 抽取state</li>
+    <li>3 访问ref</li>
+    <li>4 包装组件</li>
+</ul>
+<script>
+    /**
+     * @step 5
+     * 抽取state
+     */
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

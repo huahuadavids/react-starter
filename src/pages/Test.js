@@ -17,6 +17,9 @@ class Test extends React.Component {
       text: prev.text + "-ha"
     }))
   }
+  componentDidMount(){
+    console.log(this.props)
+  }
   render(){
     const arr = Array.prototype.slice.call("123456")
     const list = arr.map( num => {
@@ -38,6 +41,7 @@ class Test extends React.Component {
         <ul>
           {list}
         </ul>
+      
         <Detail text="haha"/>
       </div>
     )
@@ -45,3 +49,7 @@ class Test extends React.Component {
 }
 
 export default Test;
+
+
+
+
