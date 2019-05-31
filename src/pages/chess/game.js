@@ -2,34 +2,18 @@
  *@author zhangyuhua
  *@DATE 2019-05-22 11:48
  */
+import {observable} from "mobx"
 
-let knightPosition = [0, 0]
-let observer = null
+let knightPosition = observable([0,0])
 
-function emitChange() {
-  observer(knightPosition)
-}
-
-export function observe(o) {
-  if (observer) {
-    throw new Error('Multiple observers not implemented.')
-  }
-
-  observer = o
-  emitChange()
-}
 
 export function moveKnight(toX, toY) {
-  knightPosition = [toX, toY]
-  emitChange()
+  knightPosition= [toX, toY]
 }
 
 
 /**
  * @title 移动的逻辑，只能做L型
- * @param toX
- * @param toY
- * @returns {boolean}
  */
 export function canMoveKnight(toX, toY) {
   const [x, y] = knightPosition
@@ -42,7 +26,7 @@ export function canMoveKnight(toX, toY) {
   )
 }
 
-
+export default knightPosition;
 
 // function observe(receive) {
 //   const randPos = () => Math.floor(Math.random() * 8)

@@ -1,8 +1,9 @@
 import React from "react";
 import Knight from "./knight"
-import Square from "./square"
+import BoardSquare from "./square"
 import {moveKnight, canMoveKnight} from "./game"
-
+import { DragDropContextProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 // function renderSquare(x, y, [knightX, knightY]) {
 //   const black = (x + y) % 2 === 1
 //   const isKnightHere = knightX === x && knightY === y
@@ -17,32 +18,43 @@ function handleClick(x, y) {
   }
 }
 
-
-
-function renderSquare(i, [knightX, knightY]) {
-  const x = i % 8;
-  const y = Math.floor(i / 8);
-  const isKnightHere = x === knightX && y === knightY;
-  const black = (x + y) % 2 === 1;
-  const piece = isKnightHere ? <Knight /> : null;
-
+function renderSquare(i, knightPosition) {
+  const x = i % 8
+  const y = Math.floor(i / 8)
   return (
-    <div key={i} onClick={() => handleClick(x,y) }
-         style={{ width: '12.5%', height: '12.5%' }}>
-      <Square black={black}>{piece}</Square>
+    <div key={i} style={{ width: '12.5%', height: '12.5%' }}>
+      <BoardSquare x={x} y={y}>
+        {renderPiece(x, y, knightPosition)}
+      </BoardSquare>
     </div>
   )
 }
 
-export default function Board({ knightPosition }) {
-  const squares = []
-  for (let i = 0; i < 64; i++) {
-    squares.push(renderSquare(i, knightPosition))
+function renderPiece(x, y, [knightX, knightY]) {
+  if (x === knightX && y === knightY) {
+    return <Knight />
+  }
+}
+
+
+export default class Board extends React.Component {
+  constructor(){
+    super()
   }
 
-  return (
-    <div className='board'>
-      {squares}
-    </div>
-  )
+  render(){
+    const squares = []
+    for (let i = 0; i < 64; i++) {
+      squares.push(renderSquare(i, this.props.knightPosition))
+    }
+
+    return (
+      <DragDropContextProvider backend={HTML5Backend}>
+        <div className='board'>
+          {squares}
+        </div>
+      </DragDropContextProvider>
+    )
+  }
 }
+

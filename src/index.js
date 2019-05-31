@@ -24,7 +24,7 @@ import store from "./redux"
 import './styles/index.css';
 
 import Loading from './components/loading';
-
+import Dnd from './pages/move'
 /*
  * @description  dynamic import the achieve the code splitting
  * @create-react-app support this
@@ -39,11 +39,6 @@ const App = Loadable({
 
 const Hua = Loadable({
   loader: () =>  import('./pages/hua'),
-  loading: Loading,
-});
-
-const Dnd = Loadable({
-  loader: () =>  import('./pages/chess'),
   loading: Loading,
 });
 
